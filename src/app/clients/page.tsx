@@ -1,13 +1,33 @@
-// app/clients/page.tsx
+"use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const dummyClients = [
-  { id: 1, name: "Manoj Shrestha", email: "manoj@example.com", phone: "9841234567", company: "Manoj Co." },
-  { id: 2, name: "Sita Rai", email: "sita@example.com", phone: "9812345678", company: "Sita Traders" },
-];
+interface Client {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+}
 
 export default function ClientsPage() {
+  const [clients, setClients] = useState<Client[]>([]);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      try {
+        const res = await fetch("/api/clients");
+        const data = await res.json();
+        setClients(data);
+      } catch (error) {
+        console.error("Failed to fetch clients:", error);
+      }
+    };
+
+    fetchClients();
+  }, []);
+
   return (
     <div className="p-6 min-h-screen bg-black text-white">
       <div className="flex items-center justify-between mb-6">
@@ -28,17 +48,44 @@ export default function ClientsPage() {
               <th className="px-6 py-3 text-left text-sm font-medium">Email</th>
               <th className="px-6 py-3 text-left text-sm font-medium">Phone</th>
               <th className="px-6 py-3 text-left text-sm font-medium">Company</th>
+              <th className="px-6 py-3 text-left text-sm font-medium">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-700">
-            {dummyClients.map((client) => (
-              <tr key={client.id}>
+            {clients.map((client) => (
+              <tr key={client._id}>
                 <td className="px-6 py-4 whitespace-nowrap">{client.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{client.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{client.phone}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{client.company}</td>
+                <td className="px-6 py-4 whitespace-nowrap space-x-2">
+                  <Link
+                    href={`/clients/${client._id}/edit`}
+                    className="text-blue-400 hover:underline"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={async () => {
+                      if (confirm("Are you sure you want to delete this client?")) {
+                        await fetch(`/api/clients/${client._id}`, { method: "DELETE" });
+                        window.location.reload(); 
+                      }
+                    }}
+                    className="text-red-500 hover:underline"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
+            {clients.length === 0 && (
+              <tr>
+                <td colSpan={5} className="text-center px-6 py-4 text-gray-400">
+                  No clients found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
