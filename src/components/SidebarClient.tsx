@@ -14,7 +14,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const navItems = [
-  { label: "Dashboard", href: "/", icon: HomeIcon },
+  { label: "Dashboard", href: "/Dashboard", icon: HomeIcon },
   { label: "Clients", href: "/clients", icon: UsersIcon },
   { label: "Invoices", href: "/invoices", icon: DocumentTextIcon },
   { label: "Profile", href: "/profile", icon: UserCircleIcon },
