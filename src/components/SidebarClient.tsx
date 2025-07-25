@@ -1,9 +1,8 @@
-
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   HomeIcon,
   UsersIcon,
@@ -11,6 +10,7 @@ import {
   UserCircleIcon,
   Bars3Icon,
   XMarkIcon,
+  ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 
 const navItems = [
@@ -23,6 +23,18 @@ const navItems = [
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      // Call your logout API route if you have one
+      await fetch("/api/logout", { method: "POST" });
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      router.push("/login");
+    }
+  };
 
   return (
     <>
@@ -70,6 +82,16 @@ export default function Sidebar() {
                 </li>
               );
             })}
+
+            <li>
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-md transition-all text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-gray-100"
+              >
+                <ArrowRightOnRectangleIcon className="h-5 w-5" />
+                <span>Logout</span>
+              </button>
+            </li>
           </ul>
         </nav>
       </aside>
