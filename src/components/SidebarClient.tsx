@@ -28,7 +28,7 @@ export default function Sidebar() {
   const handleLogout = async () => {
     try {
       // Call your logout API route if you have one
-      await fetch("/api/logout", { method: "POST" });
+      await fetch("/api/auth/logout", { method: "POST" });
     } catch (error) {
       console.error("Logout failed:", error);
     } finally {

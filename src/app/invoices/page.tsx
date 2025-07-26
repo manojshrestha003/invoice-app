@@ -4,11 +4,20 @@ import Link from "next/link";
 
 export default function InvoiceListPage() {
   const [invoices, setInvoices] = useState<any[]>([]);
-  useEffect(()=>{
-    fetch('/api/invoices')
-      .then(r=>r.json())
-      .then(setInvoices);
-  },[]);
+  useEffect(() => {
+    fetch('/api/invoices', {
+      credentials: 'include', // send cookies for auth
+    })
+      .then(async (r) => {
+        if (!r.ok) {
+          const err = await r.json();
+          throw new Error(err.message || 'Failed to fetch invoices');
+        }
+        return r.json();
+      })
+      .then(setInvoices)
+      
+  }, []);
 
   return (
     <div className="p-6 bg-black min-h-screen text-white">

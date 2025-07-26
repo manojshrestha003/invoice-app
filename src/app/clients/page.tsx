@@ -15,16 +15,20 @@ export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([]);
 
   useEffect(() => {
-    const fetchClients = async () => {
-      try {
-        const res = await fetch("/api/clients");
-        const data = await res.json();
-        setClients(data);
-      } catch (error) {
-        console.error("Failed to fetch clients:", error);
-      }
-    };
+  const fetchClients = async () => {
+  try {
+    const res = await fetch("/api/clients", {
+      credentials: "include", 
+    });
 
+    if (!res.ok) throw new Error("Unauthorized");
+
+    const data = await res.json();
+    setClients(data);
+  } catch (error) {
+    console.error("Failed to fetch clients:", error);
+  }
+};
     fetchClients();
   }, []);
 

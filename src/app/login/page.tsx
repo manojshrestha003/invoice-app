@@ -14,13 +14,11 @@ export default function LoginPage() {
     const res = await fetch('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     });
 
     if (res.ok) {
-      router.push('/Dashboard'); 
+      router.push('/Dashboard');
     } else {
       const data = await res.json();
       setError(data.message || 'Login failed');
@@ -28,57 +26,66 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-800">
-      <div className="bg-white/20 backdrop-blur-lg rounded-xl shadow-xl p-8 w-full max-w-sm text-white">
-        <h2 className="text-3xl font-semibold mb-6 text-center">Login to InvoiceEase</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-gray-900 via-black to-gray-800 px-4">
+      <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-8 sm:p-12 text-gray-200 backdrop-blur-sm border border-gray-700">
+        <h2 className="text-4xl font-extrabold mb-8 text-center tracking-wide">HisabKitab Login</h2>
 
         {error && (
-          <div className="bg-red-500/80 text-sm text-white px-4 py-2 rounded mb-4 text-center">
+          <div className="bg-red-600 bg-opacity-80 text-sm text-white px-5 py-3 rounded-md mb-6 font-medium text-center animate-pulse">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-7">
           <div>
-            <label className="block mb-1 text-sm font-medium">Email</label>
+            <label htmlFor="email" className="block mb-2 font-semibold text-gray-300">
+              Email Address
+            </label>
             <input
+              id="email"
               type="email"
               placeholder="you@example.com"
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="w-full rounded-lg bg-gray-800 border border-gray-700 px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              autoComplete="email"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-sm font-medium">Password</label>
+            <label htmlFor="password" className="block mb-2 font-semibold text-gray-300">
+              Password
+            </label>
             <input
+              id="password"
               type="password"
               placeholder="••••••••"
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="w-full rounded-lg bg-gray-800 border border-gray-700 px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              autoComplete="current-password"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 transition text-white font-semibold py-2 rounded-lg shadow-md"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3 rounded-lg shadow-lg transition"
           >
             Sign In
           </button>
         </form>
 
-        <p className="text-sm mt-4 text-center text-gray-300">
+        <p className="mt-8 text-center text-gray-400 text-sm">
           Don’t have an account?{' '}
-          <span
+          <button
             onClick={() => router.push('/register')}
-            className="underline cursor-pointer hover:text-white"
+            className="text-indigo-500 hover:text-indigo-400 underline focus:outline-none"
+            aria-label="Go to register page"
           >
             Register
-          </span>
+          </button>
         </p>
       </div>
     </div>

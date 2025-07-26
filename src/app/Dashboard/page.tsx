@@ -4,25 +4,34 @@ import { useEffect, useState } from 'react';
 export default function DashboardPage() {
   const [user, setUser] = useState(null);
   const [dashboardData, setDashboardData] = useState(null);
-
+  
   useEffect(() => {
-    
-    fetch('/api/session')
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === 'Invalid token' || data.message === 'Token not found') {
-          window.location.href = '/login';
-        } else {
-          setUser(data.user);
-        }
-      });
+  // Check session first
+  fetch('/api/session')
+    .then(res => res.json())
+    .then(data => {
+      if (data.message === 'Invalid token' || data.message === 'Token not found') {
+        window.location.href = '/login';  // Redirect if not logged in
+      } else {
+        setUser(data.user);  // Save user info
+        // Now fetch dashboard data
+        return fetch('/api/dashboard', { credentials: 'include' });
+      }
+    })
+    .then(res => {
+      if (res && !res.ok) throw new Error('Failed to fetch dashboard');
+      return res ? res.json() : null;
+    })
+    .then(data => {
+      if (data) setDashboardData(data);
+    })
+    .catch(() => setDashboardData(null));
+}, []);
 
     
-    fetch('/api/dashboard')
-      .then(res => res.json())
-      .then(data => setDashboardData(data))
-      .catch(() => setDashboardData(null));
-  }, []);
+    
+
+
 
 
   if (!dashboardData) {
