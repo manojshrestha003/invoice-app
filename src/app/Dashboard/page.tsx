@@ -6,15 +6,15 @@ export default function DashboardPage() {
   const [dashboardData, setDashboardData] = useState(null);
   
   useEffect(() => {
-  // Check session first
+ 
   fetch('/api/session')
     .then(res => res.json())
     .then(data => {
       if (data.message === 'Invalid token' || data.message === 'Token not found') {
-        window.location.href = '/login';  // Redirect if not logged in
+        window.location.href = '/login';  
       } else {
-        setUser(data.user);  // Save user info
-        // Now fetch dashboard data
+        setUser(data.user);  
+        
         return fetch('/api/dashboard', { credentials: 'include' });
       }
     })

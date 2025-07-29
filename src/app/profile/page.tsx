@@ -1,72 +1,72 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-
-interface UserProfile {
-  username: string;
-  email: string;
-  company?: string;
-  address?: string;
-}
-
-interface SessionData {
-  id: string; // user id
-}
+import React, { useEffect, useState } from 'react';
 
 export default function ProfilePage() {
-  const [user, setUser] = useState<UserProfile | null>(null);
-  const router = useRouter();
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
+    async function fetchUser() {
       try {
-        // 1. Get session info (must return at least user id)
-        const sessionRes = await fetch('/api/session');
-        if (!sessionRes.ok) {
-          router.push('/login');
-          return;
-        }
+        const sessionRes = await fetch('http://localhost:3000/api/session');
+        const sessionData = await sessionRes.json();
+        console.log('SESSION:', sessionData);
 
-        const sessionData: SessionData = await sessionRes.json();
+        if (!sessionData?.user?.id) throw new Error('Session invalid');
 
-        console.log(sessionData.id)
+        const userRes = await fetch(`http://localhost:3000/api/users/${sessionData.user.id}`);
+        const userData = await userRes.json();
+        console.log('USER:', userData);
 
-        if (!sessionData.id) {
-          router.push('/login');
-          return;
-        }
-
-        // 2. Fetch user profile using id
-        const userRes = await fetch(`/api/users/${sessionData.id}`);
-        if (!userRes.ok) {
-          console.error('Failed to fetch user profile');
-          router.push('/login');
-          return;
-        }
-
-        const userData: UserProfile = await userRes.json();
         setUser(userData);
-      } catch (error) {
-        console.error('Error fetching profile:', error);
-        router.push('/login');
+      } catch (err) {
+        console.error('Failed to load user:', err);
+      } finally {
+        setLoading(false);
       }
-    };
+    }
 
-    fetchUserProfile();
-  }, [router]);
+    fetchUser();
+  }, []);
 
-  if (!user) return <p>Loading profile...</p>;
+  if (loading) {
+    return <div className="text-center mt-10 text-lg text-gray-700 dark:text-gray-300">Loading profile...</div>;
+  }
+
+  if (!user) {
+    return <div className="text-center mt-10 text-red-600">Failed to load user data.</div>;
+  }
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 bg-white shadow rounded">
-      <h1 className="text-2xl font-bold mb-6 text-center">Profile</h1>
-      <div className="space-y-4">
-        <p><strong>Username:</strong> {user.username}</p>
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Company:</strong> {user.company || 'N/A'}</p>
-        <p><strong>Address:</strong> {user.address || 'N/A'}</p>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">My Profile</h1>
+
+      <div className="bg-white dark:bg-gray-900 shadow-2xl rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700 transition-all duration-300">
+        <div className="flex flex-col md:flex-row items-center md:items-start md:space-x-6 mb-6">
+          <div className="h-24 w-24 rounded-full bg-gradient-to-tr from-purple-400 to-blue-500 text-white flex items-center justify-center text-3xl font-bold shadow-md">
+            {user.username?.split(' ').map((n: string) => n[0]).join('')}
+          </div>
+          <div className="mt-4 md:mt-0 text-center md:text-left">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">{user.username}</h2>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">Admin</p>
+          </div>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <ProfileItem label="Email" value={user.email} />
+          <ProfileItem label="Company" value={user.company} />
+          <ProfileItem label="Address" value={user.address} />
+          <ProfileItem label="Joined On" value={'2024-01-15'} />
+        </div>
       </div>
     </div>
   );
 }
+
+const ProfileItem = ({ label, value }: { label: string; value: string }) => (
+  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg px-4 py-3 shadow-sm border border-gray-200 dark:border-gray-700">
+    <div className="text-xs uppercase text-gray-500 dark:text-gray-400 mb-1">{label}</div>
+    <div className="text-sm font-medium text-gray-800 dark:text-gray-100">{value}</div>
+  </div>
+);
