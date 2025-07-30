@@ -2,17 +2,16 @@ import { NextRequest } from 'next/server';
 import { connectDB } from '@/lib/db';
 import User from '@/models/User';
 
-export async function GET(req: NextRequest, { params }: any) {
+export async function GET(req: NextRequest, context: any) {
   await connectDB();
 
+  const params = await context.params;  
   const { id } = params;
 
   try {
     const user = await User.findById(id).select('-password');
     if (!user) {
-      return new Response(JSON.stringify({ message: 'User not found' }), {
-        status: 404,
-      });
+      return new Response(JSON.stringify({ message: 'User not found' }), { status: 404 });
     }
 
     return new Response(JSON.stringify(user), {
@@ -20,8 +19,7 @@ export async function GET(req: NextRequest, { params }: any) {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    return new Response(JSON.stringify({ message: 'Server error' }), {
-      status: 500,
-    });
+    return new Response(JSON.stringify({ message: 'Server error' }), { status: 500 });
   }
 }
+
