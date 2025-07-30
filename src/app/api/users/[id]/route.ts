@@ -2,11 +2,10 @@ import { NextRequest } from 'next/server';
 import { connectDB } from '@/lib/db';
 import User from '@/models/User';
 
-export async function GET(req: NextRequest, context) {
+export async function GET(req: NextRequest, { params }: any) {
   await connectDB();
 
-  // Await params to handle Edge runtime Promise
-  const { id } = await context.params;
+  const { id } = params;
 
   try {
     const user = await User.findById(id).select('-password');
