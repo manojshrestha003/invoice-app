@@ -1,13 +1,12 @@
-export const runtime = 'nodejs';
-
 import { NextRequest } from 'next/server';
 import { connectDB } from '@/lib/db';
 import User from '@/models/User';
 
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+export async function GET(req: NextRequest, context) {
   await connectDB();
 
-  const { id } = context.params;
+  // Await params to handle Edge runtime Promise
+  const { id } = await context.params;
 
   try {
     const user = await User.findById(id).select('-password');
@@ -19,9 +18,7 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
 
     return new Response(JSON.stringify(user), {
       status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
     return new Response(JSON.stringify({ message: 'Server error' }), {
