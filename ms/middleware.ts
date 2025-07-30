@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+simport { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 
 // Make sure this is defined in your `.env.local` file as: JWT_SECRET=your_secret
