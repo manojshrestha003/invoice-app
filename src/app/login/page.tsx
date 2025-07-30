@@ -28,7 +28,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-gray-900 via-black to-gray-800 px-4">
       <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-8 sm:p-12 text-gray-200 backdrop-blur-sm border border-gray-700">
-        <h2 className="text-4xl font-extrabold mb-8 text-center tracking-wide">HisabKitab Login</h2>
+        <h2 className="text-4xl font-extrabold mb-8 text-center text-green-500 tracking-wide">HisabKitab<span className = "text-white"> Login</span></h2>
 
         {error && (
           <div className="bg-red-600 bg-opacity-80 text-sm text-white px-5 py-3 rounded-md mb-6 font-medium text-center animate-pulse">

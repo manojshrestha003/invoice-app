@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/db';
 import { ClientModel } from '@/models/client';
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+
+
+export const runtime = 'nodejs';
+
+export async function GET(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   await connectDB();
 
-  const { params } = await context;
-  const { id } = params;
+  const { id } = await context.params;
 
-  if (!id) return NextResponse.json({ error: 'Missing id' }, { status: 400 });
+  if (!id) {
+    return NextResponse.json({ error: 'Missing id' }, { status: 400 });
+  }
 
   const client = await ClientModel.findById(id);
 
@@ -18,12 +26,13 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
   return NextResponse.json(client);
 }
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   await connectDB();
 
-  const { params } = await context;
-  const { id } = params;
-
+  const { id } = await context.params;
   const body = await req.json();
 
   const updatedClient = await ClientModel.findByIdAndUpdate(
@@ -45,11 +54,13 @@ export async function PUT(req: NextRequest, context: { params: { id: string } })
   return NextResponse.json(updatedClient);
 }
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   await connectDB();
 
-  const { params } = await context;
-  const { id } = params;
+  const { id } = await context.params;
 
   const deletedClient = await ClientModel.findByIdAndDelete(id);
 

@@ -27,7 +27,7 @@ export default function Sidebar() {
 
   const handleLogout = async () => {
     try {
-      // Call your logout API route if you have one
+    
       await fetch("/api/auth/logout", { method: "POST" });
     } catch (error) {
       console.error("Logout failed:", error);
@@ -60,7 +60,7 @@ export default function Sidebar() {
           flex-shrink-0
         `}
       >
-        <h1 className="text-2xl font-bold mb-8 text-gray-800">HisabKitab</h1>
+        <h1 className="text-3xl font-bold mb-8 text-green-600">HisabKitab</h1>
         <nav>
           <ul className="space-y-4">
             {navItems.map(({ href, label, icon: Icon }) => {
