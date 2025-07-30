@@ -43,8 +43,8 @@ export default function DashboardPage() {
   }
 
   
-  const formatCurrency = (amount) =>
-    'NPR ' + amount.toLocaleString('en-IN');
+  const formatCurrency = (amount: number): string =>
+  'NPR ' + amount.toLocaleString('en-IN');
 
   
   const statusColor = {
