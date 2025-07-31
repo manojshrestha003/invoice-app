@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-// ---------- Type Definitions ----------
+
 interface User {
   email: string;
 }
@@ -22,7 +22,7 @@ interface DashboardData {
   recentInvoices: Invoice[];
 }
 
-// ---------- Component ----------
+
 export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
@@ -48,7 +48,6 @@ export default function DashboardPage() {
       .catch(() => setDashboardData(null));
   }, []);
 
-  // ---------- Utils ----------
   const formatCurrency = (amount: number): string =>
     'NPR ' + amount.toLocaleString('en-IN');
 
@@ -58,7 +57,6 @@ export default function DashboardPage() {
     PENDING: 'text-yellow-400',
   };
 
-  // ---------- Loading State ----------
   if (!dashboardData) {
     return (
       <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
@@ -67,7 +65,7 @@ export default function DashboardPage() {
     );
   }
 
-  // ---------- Render ----------
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Topbar */}
