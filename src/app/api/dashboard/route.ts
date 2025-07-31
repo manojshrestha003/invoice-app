@@ -5,6 +5,7 @@ import { ClientModel as Client } from '@/models/client';
 import { connectDB } from '@/lib/db';
 
 const JWT_SECRET = process.env.JWT_SECRET;
+
 if (!JWT_SECRET) {
   throw new Error('JWT_SECRET is not defined in environment variables');
 }
@@ -25,17 +26,8 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: 'Unauthorized - No token' }, { status: 401 });
   }
 
-  try {
-    const decoded = verify(token, JWT_SECRET);
 
-    const userId =
-      typeof decoded === 'object' && decoded !== null && 'id' in decoded
-        ? decoded.id
-        : null;
-
-    if (!userId) {
-      throw new Error('Invalid token payload');
-    }
+  
 
     await connectDB();
 
