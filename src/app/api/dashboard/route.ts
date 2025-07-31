@@ -5,6 +5,9 @@ import { ClientModel as Client } from '@/models/client';
 import { connectDB } from '@/lib/db';
 
 const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET is not defined in environment variables');
+}
 
 function parseCookies(cookieHeader = '') {
   return Object.fromEntries(cookieHeader.split(';').map(c => {
@@ -24,23 +27,26 @@ export async function GET(req: Request) {
 
   try {
     const decoded = verify(token, JWT_SECRET);
-    // decoded type is string | object, assert as object with id:
-    const userId = typeof decoded === 'object' && decoded !== null && 'id' in decoded ? decoded.id : null;
+    const userId =
+      typeof decoded === 'object' && decoded !== null && 'id' in decoded
+        ? decoded.id
+        : null;
+
     if (!userId) {
       throw new Error('Invalid token payload');
     }
 
     await connectDB();
 
-    // Fetch invoices only for logged-in user, populate client name
-    const invoices = await Invoice.find({ userId }).populate('clientId', 'name').sort({ date: -1 });
+    const invoices = await Invoice.find({ userId })
+      .populate('clientId', 'name')
+      .sort({ date: -1 });
 
     const totalInvoices = invoices.reduce((acc, inv) => acc + inv.totalAmount, 0);
     const pendingPayments = invoices
       .filter((inv) => inv.status === 'PENDING')
       .reduce((acc, inv) => acc + inv.totalAmount, 0);
 
-    // Count only clients belonging to the user
     const totalClients = await Client.countDocuments({ userId });
 
     const recentInvoices = invoices.slice(0, 5).map((inv) => ({
