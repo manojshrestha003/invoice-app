@@ -27,6 +27,7 @@ export async function GET(req: Request) {
 
   try {
     const decoded = verify(token, JWT_SECRET);
+
     const userId =
       typeof decoded === 'object' && decoded !== null && 'id' in decoded
         ? decoded.id
