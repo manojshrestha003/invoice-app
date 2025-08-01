@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 interface User {
   email: string;
+  username: string
 }
 
 interface Invoice {
@@ -28,21 +29,22 @@ export default function DashboardPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        
+        // Fetch session
         const sessionRes = await fetch('/api/session');
         if (!sessionRes.ok) throw new Error('Failed to fetch session');
         const sessionData = await sessionRes.json();
 
         if (!sessionData?.user?.id) throw new Error('Session invalid');
+        const userId = sessionData.user.id;
 
-        
-        const userRes = await fetch(`/api/users/${sessionData.user.id}`);
+        // Fetch user details
+        const userRes = await fetch(`/api/users/${userId}`);
         if (!userRes.ok) throw new Error('Failed to fetch user data');
         const userData: User = await userRes.json();
         setUser(userData);
 
-      
-        const dashboardRes = await fetch('/api/dashboard', { credentials: 'include' });
+        // Fetch dashboard data
+        const dashboardRes = await fetch('/api/dashboard', { credentials: 'include' });;
         if (!dashboardRes.ok) throw new Error('Failed to fetch dashboard data');
         const dashboardInfo: DashboardData = await dashboardRes.json();
         setDashboardData(dashboardInfo);
@@ -73,29 +75,35 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Topbar */}
+      
       <div className="bg-gray-800 shadow px-6 py-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <div className="text-sm text-gray-300">Hi, {user?.username || 'User'}</div>
+        <div className="text-sm text-gray-300">Hi, {user?.username || user?.email || 'User'}</div>
       </div>
 
-      {/* Main */}
+      
       <main className="p-6 space-y-6">
-        {/* Stats */}
+        
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-gray-800 rounded-xl p-6 shadow">
             <h2 className="text-xl font-semibold mb-2 text-gray-200">Total Invoices</h2>
-            <p className="text-3xl font-bold text-blue-400">{dashboardData.totalInvoices}</p>
+            <p className="text-3xl font-bold text-blue-400">
+              {formatCurrency(dashboardData.totalInvoices)}
+            </p>
           </div>
 
           <div className="bg-gray-800 rounded-xl p-6 shadow">
             <h2 className="text-xl font-semibold mb-2 text-gray-200">Pending Payments</h2>
-            <p className="text-3xl font-bold text-orange-400">{formatCurrency(dashboardData.pendingPayments)}</p>
+            <p className="text-3xl font-bold text-orange-400">
+              {formatCurrency(dashboardData.pendingPayments)}
+            </p>
           </div>
 
           <div className="bg-gray-800 rounded-xl p-6 shadow">
             <h2 className="text-xl font-semibold mb-2 text-gray-200">Clients</h2>
-            <p className="text-3xl font-bold text-green-400">{dashboardData.totalClients}</p>
+            <p className="text-3xl font-bold text-green-400">
+              {dashboardData.totalClients}
+            </p>
           </div>
         </section>
 
@@ -118,7 +126,9 @@ export default function DashboardPage() {
                   <tr key={invoice.id} className="border-b border-gray-700">
                     <td className="p-2">INV-{i + 1}</td>
                     <td className="p-2">{invoice.client}</td>
-                    <td className="p-2">{formatCurrency(invoice.totalAmount)}</td>
+                    <td className="p-2">
+                      {formatCurrency(invoice.totalAmount)}
+                    </td>
                     <td className={`p-2 font-medium ${statusColor[invoice.status] || 'text-gray-300'}`}>
                       {invoice.status.charAt(0) + invoice.status.slice(1).toLowerCase()}
                     </td>
