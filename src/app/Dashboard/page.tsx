@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-
 interface User {
   email: string;
 }
@@ -22,30 +21,37 @@ interface DashboardData {
   recentInvoices: Invoice[];
 }
 
-
 export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
 
   useEffect(() => {
-    fetch('/api/session')
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === 'Invalid token' || data.message === 'Token not found') {
-          window.location.href = '/login';
-        } else {
-          setUser(data.user);
-          return fetch('/api/dashboard', { credentials: 'include' });
-        }
-      })
-      .then(res => {
-        if (res && !res.ok) throw new Error('Failed to fetch dashboard');
-        return res ? res.json() : null;
-      })
-      .then(data => {
-        if (data) setDashboardData(data);
-      })
-      .catch(() => setDashboardData(null));
+    async function fetchData() {
+      try {
+        
+        const sessionRes = await fetch('/api/session');
+        if (!sessionRes.ok) throw new Error('Failed to fetch session');
+        const sessionData = await sessionRes.json();
+
+        if (!sessionData?.user?.id) throw new Error('Session invalid');
+
+        
+        const userRes = await fetch(`/api/users/${sessionData.user.id}`);
+        if (!userRes.ok) throw new Error('Failed to fetch user data');
+        const userData: User = await userRes.json();
+        setUser(userData);
+
+      
+        const dashboardRes = await fetch('/api/dashboard', { credentials: 'include' });
+        if (!dashboardRes.ok) throw new Error('Failed to fetch dashboard data');
+        const dashboardInfo: DashboardData = await dashboardRes.json();
+        setDashboardData(dashboardInfo);
+      } catch (err) {
+        console.error('Failed to load dashboard:', err);
+      }
+    }
+
+    fetchData();
   }, []);
 
   const formatCurrency = (amount: number): string =>
@@ -65,13 +71,12 @@ export default function DashboardPage() {
     );
   }
 
-  
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Topbar */}
       <div className="bg-gray-800 shadow px-6 py-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <div className="text-sm text-gray-300">Hi, {user?.email || 'User'}</div>
+        <div className="text-sm text-gray-300">Hi, {user?.username || 'User'}</div>
       </div>
 
       {/* Main */}
@@ -80,7 +85,7 @@ export default function DashboardPage() {
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-gray-800 rounded-xl p-6 shadow">
             <h2 className="text-xl font-semibold mb-2 text-gray-200">Total Invoices</h2>
-            <p className="text-3xl font-bold text-blue-400">{formatCurrency(dashboardData.totalInvoices)}</p>
+            <p className="text-3xl font-bold text-blue-400">{dashboardData.totalInvoices}</p>
           </div>
 
           <div className="bg-gray-800 rounded-xl p-6 shadow">

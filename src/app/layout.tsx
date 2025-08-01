@@ -1,4 +1,4 @@
-// app/layout.tsx
+
 import './globals.css';
 import { Inter } from 'next/font/google';
 import LayoutWrapper from '@/components/LayoutWrapper';
@@ -6,7 +6,7 @@ import LayoutWrapper from '@/components/LayoutWrapper';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Invoice Manager',
+  title: 'HisabKitab-Invoice Manager',
   description: 'Create, edit, and export invoices',
 };
 
@@ -21,3 +21,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+
