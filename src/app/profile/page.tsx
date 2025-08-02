@@ -10,12 +10,24 @@ export default function ProfilePage() {
     async function fetchUser() {
       try {
         const sessionRes = await fetch('http://localhost:3000/api/session');
+        
+        if (!sessionRes.ok) {
+          const errText = await sessionRes.text();
+          throw new Error(`Session fetch failed: ${errText}`);
+        }
+
         const sessionData = await sessionRes.json();
         console.log('SESSION:', sessionData);
 
         if (!sessionData?.user?.id) throw new Error('Session invalid');
 
         const userRes = await fetch(`http://localhost:3000/api/users/${sessionData.user.id}`);
+        
+        if (!userRes.ok) {
+          const errText = await userRes.text();
+          throw new Error(`User fetch failed: ${errText}`);
+        }
+
         const userData = await userRes.json();
         console.log('USER:', userData);
 
