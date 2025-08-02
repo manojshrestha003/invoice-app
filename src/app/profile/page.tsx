@@ -9,7 +9,7 @@ export default function ProfilePage() {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const sessionRes = await fetch('http://localhost:3000/api/session');
+        const sessionRes = await fetch('api/session');
         
         if (!sessionRes.ok) {
           const errText = await sessionRes.text();
@@ -21,7 +21,7 @@ export default function ProfilePage() {
 
         if (!sessionData?.user?.id) throw new Error('Session invalid');
 
-        const userRes = await fetch(`http://localhost:3000/api/users/${sessionData.user.id}`);
+        const userRes = await fetch(`api/users/${sessionData.user.id}`);
         
         if (!userRes.ok) {
           const errText = await userRes.text();
