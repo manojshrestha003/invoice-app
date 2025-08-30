@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+HisabKitab – Invoice Management App
 
-## Getting Started
+This is my full-stack Invoice/Billing Management App built with Next.js and MongoDB. I made this project to manage invoices, customers, and payments in a simple way.
 
-First, run the development server:
+ What it can do
 
-```bash
+Create, edit, and delete invoices
+
+Manage customers and their details
+
+Mark invoices as paid or unpaid
+
+Dashboard with stats (total invoices, revenue, pending payments, etc.)
+
+Export invoices as PDF
+
+User authentication (login & signup)
+
+Tech Stack
+
+Frontend: Next.js (React + Tailwind CSS)
+
+Backend: Next.js API Routes
+
+Database: MongoDB with Mongoose
+
+Authentication: NextAuth.js (or JWT if you used custom)
+
+ How to run locally
+
+Clone the repo
+
+git clone https://github.com/manojshrestha003/invoice-app
+cd invoice-app
+
+
+Install dependencies
+
+npm install
+
+
+Create a .env.local file and add:
+
+MONGODB_URI=your-mongodb-connection-string
+NEXTAUTH_SECRET=your-secret-key
+NEXTAUTH_URL=http://localhost:3000
+
+
+Run the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000
+ in your browser 🚀
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📂 Project Structure
+components/      -> Reusable UI components
+models/          -> Database models (Mongoose)
+pages/           -> Next.js pages (with API routes)
+public/          -> Static assets
+utils/           -> Helper functions
+styles/          -> Global styles
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ Future Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add email notifications for invoices
 
-## Deploy on Vercel
+Multi-currency support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Payment gateway integration (Stripe/PayPal)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Admin dashboard with more analytics
+
