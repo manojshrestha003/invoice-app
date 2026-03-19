@@ -40,17 +40,17 @@ const Features = () => {
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-green-500/5 to-transparent pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-green-400 text-sm font-bold uppercase tracking-widest mb-3">Core Capabilities</h2>
-          <h3 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
+        <div className="text-center mb-16 px-4">
+          <h2 className="text-green-400 text-xs sm:text-sm font-bold uppercase tracking-widest mb-3">Core Capabilities</h2>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
             Everything you need to <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">master your finances.</span>
           </h3>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto font-medium">
             HisabKitab provides a comprehensive suite of tools designed to simplify your billing process and give you total control over your business growth.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 px-4">
           {features.map((feature, idx) => (
             <div 
               key={idx} 

@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-500 text-sm font-medium">
             © {new Date().getFullYear()} HisabKitab Inc. All rights reserved.
           </p>
           <div className="flex gap-8">

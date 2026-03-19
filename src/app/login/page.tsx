@@ -76,30 +76,30 @@ export default function LoginPage() {
         </div>
 
         {/* Left Side: Content */}
-        <div className="lg:w-1/2 flex flex-col justify-center px-8 sm:px-12 lg:px-24 py-12 relative z-10 lg:border-r border-white/5 order-2 lg:order-1">
-          <div className="max-w-xl">
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
+        <div className="lg:w-1/2 flex flex-col justify-center px-4 sm:px-12 lg:px-24 py-12 relative z-10 lg:border-r border-white/5 order-2 lg:order-1">
+          <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
               Welcome back to <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">HisabKitab.</span>
             </h1>
-            <p className="text-gray-400 text-lg mb-12 font-medium leading-relaxed">
+            <p className="text-gray-400 text-base sm:text-lg mb-10 font-medium leading-relaxed">
               Log in to your account and manage your business finances with the most advanced billing tool.
             </p>
 
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8 text-left">
               {benefits.map((benefit, idx) => (
                 <div key={idx} className="flex gap-4 group">
-                  <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-green-500/10 group-hover:border-green-500/50 transition-all">
-                    <benefit.icon className="w-6 h-6 text-green-400" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-green-500/10 group-hover:border-green-500/50 transition-all">
+                    <benefit.icon className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold text-lg mb-1 group-hover:text-green-400 transition-colors">{benefit.title}</h4>
-                    <p className="text-gray-500 font-medium">{benefit.description}</p>
+                    <h4 className="text-white font-bold text-base sm:text-lg mb-1 group-hover:text-green-400 transition-colors">{benefit.title}</h4>
+                    <p className="text-gray-500 font-medium text-sm sm:text-base">{benefit.description}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-16 pt-12 border-t border-white/5">
+            <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-white/5">
               <p className="text-gray-400 text-sm font-semibold italic">
                 "HisabKitab changed how I manage my freelance projects. I save 5 hours every week!"
               </p>
@@ -109,14 +109,14 @@ export default function LoginPage() {
         </div>
 
         {/* Right Side: Login Form */}
-        <div className="lg:w-1/2 flex items-center justify-center px-4 py-12 lg:py-24 relative z-10 order-1 lg:order-2">
-          <div className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[2.5rem] p-8 md:p-12 transform hover:scale-[1.01] transition-transform">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500 rounded-2xl mb-6 shadow-lg shadow-green-500/20">
-                <KeyIcon className="w-8 h-8 text-white" />
+        <div className="lg:w-1/2 flex items-center justify-center px-4 py-8 sm:py-12 lg:py-24 relative z-10 order-1 lg:order-2">
+          <div className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 md:p-12 transform hover:scale-[1.01] transition-transform">
+            <div className="text-center mb-8 sm:mb-10">
+              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-2xl mb-6 shadow-lg shadow-green-500/20">
+                <KeyIcon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-black text-white mb-2 tracking-tight">Sign In</h2>
-              <p className="text-gray-400 font-medium text-sm">Welcome back! Please enter your details.</p>
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight">Sign In</h2>
+              <p className="text-gray-400 font-medium text-xs sm:text-sm">Welcome back! Please enter your details.</p>
             </div>
 
             {error && (
