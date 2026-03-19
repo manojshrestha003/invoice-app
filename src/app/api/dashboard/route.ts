@@ -58,11 +58,49 @@ export async function GET(req: Request) {
       client: inv.clientId?.name || 'Unknown',
     }));
 
+    // Data for charts
+    // 1. Status Distribution
+    let statusChart = [
+      { name: 'PAID', value: 0, fill: '#22c55e' },
+      { name: 'PENDING', value: 0, fill: '#f59e0b' },
+      { name: 'UNPAID', value: 0, fill: '#ef4444' }
+    ];
+    invoices.forEach((inv) => {
+      const match = statusChart.find(s => s.name === inv.status);
+      if (match) match.value += 1;
+    });
+
+    // 2. Revenue Over Time (Last 6 months)
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let revenueMap: Record<string, number> = {};
+    
+    // Initialize last 6 months
+    const today = new Date();
+    for(let i=5; i>=0; i--) {
+      const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+      revenueMap[`${monthNames[d.getMonth()]} ${d.getFullYear().toString().substring(2)}`] = 0;
+    }
+
+    invoices.forEach((inv) => {
+      const d = new Date(inv.date);
+      const key = `${monthNames[d.getMonth()]} ${d.getFullYear().toString().substring(2)}`;
+      if (revenueMap[key] !== undefined) {
+        revenueMap[key] += inv.totalAmount;
+      }
+    });
+
+    const revenueChart = Object.keys(revenueMap).map(k => ({
+      name: k,
+      revenue: revenueMap[k]
+    }));
+
     return NextResponse.json({
       totalInvoices,
       pendingPayments,
       totalClients,
       recentInvoices,
+      statusChart,
+      revenueChart
     });
   } catch (err: any) {
     console.error('JWT Verification Error:', err.message);

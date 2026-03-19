@@ -2,6 +2,7 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import LayoutWrapper from '@/components/LayoutWrapper';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LayoutWrapper>
           {children}
         </LayoutWrapper>
+        <Toaster position="bottom-right" theme="dark" richColors closeButton />
       </body>
     </html>
   );

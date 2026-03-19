@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function AddClientPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", address: "" });
@@ -20,69 +21,111 @@ export default function AddClientPage() {
     });
 
     if (res.ok) {
-      alert("Client added!");
+      toast.success("Client added successfully!");
       router.push("/clients");
     } else {
-      alert("Error adding client");
+      toast.error("Error adding client");
     }
   };
 
   return (
-    <div className="p-6 min-h-screen bg-black text-white">
-      <div className="max-w-xl mx-auto">
-        <h2 className="text-2xl font-bold mb-6">Add New Client</h2>
-        <form onSubmit={handleSubmit} className="space-y-4 bg-gray-900 p-6 rounded-lg shadow-md">
-          <input
-            name="name"
-            type="text"
-            placeholder="Full Name"
-            required
-            value={form.name}
-            onChange={handleChange}
-            className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2"
-          />
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-            value={form.email}
-            onChange={handleChange}
-            className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2"
-          />
-          <input
-            name="phone"
-            type="text"
-            placeholder="Phone Number"
-            required
-            value={form.phone}
-            onChange={handleChange}
-            className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2"
-          />
-          <input
-            name="company"
-            type="text"
-            placeholder="Company"
-            value={form.company}
-            onChange={handleChange}
-            className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2"
-          />
-          <input
-            name="address"
-            type="text"
-            placeholder="Address"
-            value={form.address}
-            onChange={handleChange}
-            className="w-full bg-gray-800 border border-gray-700 text-white rounded-lg px-4 py-2"
-          />
-          <button
-            type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm"
-          >
-            Save Client
-          </button>
-        </form>
-      </div>
+    <div className="min-h-screen bg-[#0A0A0A] text-white selection:bg-blue-500/30 font-sans pb-12">
+      {/* Header Setup */}
+      <header className="sticky top-0 z-30 bg-[#0A0A0A]/80 backdrop-blur-xl border-b border-white/[0.08] px-8 py-5 flex items-center gap-4">
+        <button type="button" onClick={() => router.push('/clients')} className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/5">
+          <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+        </button>
+        <div>
+          <h1 className="text-2xl font-black text-white tracking-tight">Add New Client</h1>
+          <p className="text-sm font-medium text-gray-400">Create a new client profile</p>
+        </div>
+      </header>
+
+      <main className="p-4 sm:p-8 max-w-4xl mx-auto mt-4">
+        <section className="bg-[#111111] border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl relative p-8 md:p-10">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+          
+          <form onSubmit={handleSubmit} className="relative space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Full Name *</label>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="e.g. Acme Corp"
+                  required
+                  value={form.name}
+                  onChange={handleChange}
+                  className="w-full bg-[#161616] border border-white/10 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder-gray-600 font-medium"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Email Address *</label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="contact@example.com"
+                  required
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full bg-[#161616] border border-white/10 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder-gray-600 font-medium"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Phone Number *</label>
+                <input
+                  name="phone"
+                  type="text"
+                  placeholder="+1 (555) 000-0000"
+                  required
+                  value={form.phone}
+                  onChange={handleChange}
+                  className="w-full bg-[#161616] border border-white/10 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder-gray-600 font-medium"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Company</label>
+                <input
+                  name="company"
+                  type="text"
+                  placeholder="Company Name"
+                  value={form.company}
+                  onChange={handleChange}
+                  className="w-full bg-[#161616] border border-white/10 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder-gray-600 font-medium"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-gray-400">Address</label>
+              <input
+                name="address"
+                type="text"
+                placeholder="123 Business Rd, Suite 100"
+                value={form.address}
+                onChange={handleChange}
+                className="w-full bg-[#161616] border border-white/10 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder-gray-600 font-medium"
+              />
+            </div>
+
+            <div className="pt-8 flex items-center justify-end gap-4 border-t border-white/[0.04]">
+              <button
+                type="button"
+                onClick={() => router.push('/clients')}
+                className="px-6 py-3 rounded-xl text-sm font-bold text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-8 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl text-sm font-bold text-white transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] transform hover:-translate-y-0.5"
+              >
+                Save Client
+              </button>
+            </div>
+          </form>
+        </section>
+      </main>
     </div>
   );
 }
