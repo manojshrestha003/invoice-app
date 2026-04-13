@@ -25,6 +25,27 @@ export default function ViewInvoicePage() {
     totalAmount: number;
   } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showAIModal, setShowAIModal] = useState(false);
+  const [aiLoading, setAILoading] = useState(false);
+  const [aiFeedback, setAiFeedback] = useState<{score: number, feedback: string[]}|null>(null);
+
+  const handleAIAudit = async () => {
+    setShowAIModal(true);
+    setAILoading(true);
+    try {
+      const res = await fetch("/api/ai-audit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(invoice)
+      });
+      const data = await res.json();
+      setAiFeedback(data);
+    } catch(err) {
+      toast.error("AI Audit failed.");
+    } finally {
+      setAILoading(false);
+    }
+  };
 
   if (!id) {
     return (
@@ -96,6 +117,13 @@ export default function ViewInvoicePage() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          <button
+            onClick={handleAIAudit}
+            className="hidden sm:flex items-center gap-2 px-4 py-2.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 rounded-xl text-sm font-bold transition-colors border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.15)]"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            AI Audit
+          </button>
           <button
             onClick={() => router.push(`/invoices/${id}/edit`)}
             className="hidden sm:flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-sm font-bold text-gray-300 transition-colors border border-white/10"
@@ -210,6 +238,44 @@ export default function ViewInvoicePage() {
           </div>
         </section>
       </main>
+
+      {/* AI Audit Modal */}
+      {showAIModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 print:hidden p-4">
+          <div className="bg-[#111] border border-white/10 rounded-2xl p-8 max-w-lg w-full relative shadow-2xl">
+            <button onClick={() => setShowAIModal(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+            <h2 className="text-2xl font-black mb-4 flex items-center gap-2 text-white">
+              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              AI Invoice Audit
+            </h2>
+            
+            {aiLoading ? (
+              <div className="py-12 flex flex-col items-center">
+                <svg className="w-10 h-10 animate-spin text-blue-500 mb-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                <p className="text-gray-400 text-sm font-medium animate-pulse">Our AI is reviewing your invoice...</p>
+              </div>
+            ) : aiFeedback ? (
+              <div>
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-6 text-center mb-6">
+                  <p className="text-xs font-bold uppercase tracking-widest text-blue-400 mb-2">Professionalism Score</p>
+                  <div className="text-5xl font-black font-mono text-white">{aiFeedback.score}<span className="text-2xl text-gray-500">/100</span></div>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-3">AI Suggestions:</h3>
+                  <ul className="space-y-3">
+                    {aiFeedback.feedback.map((fb, idx) => (
+                      <li key={idx} className="flex gap-3 text-sm text-gray-300 bg-white/5 p-4 rounded-xl border border-white/5">
+                        <span className="text-blue-400 font-black">•</span>
+                        {fb}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background:#171717;
-  --foreground:#ffffff;
+  --background: #171717;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -31,7 +31,9 @@ body {
     color: black !important;
   }
 
-  button, nav, .no-print {
+  button,
+  nav,
+  .no-print {
     display: none !important;
   }
 
@@ -44,9 +46,10 @@ body {
 }
 
 .scrollbar-hide {
-  -ms-overflow-style: none;  
-  scrollbar-width: none;     
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;            
+  display: none;
 }

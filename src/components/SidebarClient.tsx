@@ -11,12 +11,16 @@ import {
   Bars3Icon,
   XMarkIcon,
   ArrowRightOnRectangleIcon,
+  BanknotesIcon,
+  ChartBarSquareIcon
 } from "@heroicons/react/24/outline";
 
 const navItems = [
   { label: "Dashboard", href: "/Dashboard", icon: HomeIcon, match: ["/Dashboard", "/dashboard"] },
   { label: "Clients", href: "/clients", icon: UsersIcon, match: ["/clients"] },
   { label: "Invoices", href: "/invoices", icon: DocumentTextIcon, match: ["/invoices"] },
+  { label: "Expenses", href: "/expenses", icon: BanknotesIcon, match: ["/expenses"] },
+  { label: "Tax Reports", href: "/reports", icon: ChartBarSquareIcon, match: ["/reports"] },
   { label: "Profile", href: "/profile", icon: UserCircleIcon, match: ["/profile"] },
 ];
 

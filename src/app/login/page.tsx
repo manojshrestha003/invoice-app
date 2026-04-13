@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { 
-  EnvelopeIcon, 
-  LockClosedIcon, 
+import {
+  EnvelopeIcon,
+  LockClosedIcon,
   KeyIcon,
   CheckBadgeIcon,
   SparklesIcon,
@@ -67,7 +67,7 @@ export default function LoginPage() {
   return (
     <div className="bg-black min-h-screen flex flex-col pt-20">
       <Navbar />
-      
+
       <main className="flex-1 flex flex-col lg:flex-row relative overflow-hidden">
         {/* Decorative Background */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -99,12 +99,6 @@ export default function LoginPage() {
               ))}
             </div>
 
-            <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-white/5">
-              <p className="text-gray-400 text-sm font-semibold italic">
-                "HisabKitab changed how I manage my freelance projects. I save 5 hours every week!"
-              </p>
-              <p className="text-white text-sm font-bold mt-2">— Alex, Creative Director</p>
-            </div>
           </div>
         </div>
 

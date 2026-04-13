@@ -15,6 +15,8 @@ const InvoiceSchema = new mongoose.Schema({
   status: { type: String, enum: ['PAID', 'UNPAID', 'PENDING'], default: 'PENDING' },
   items: { type: [ItemSchema], required: true },
   totalAmount: { type: Number, required: true },
+  taxRate: { type: Number, default: 0 },
+  taxAmount: { type: Number, default: 0 },
   notes: String,
 });
 

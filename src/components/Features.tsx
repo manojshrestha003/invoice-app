@@ -1,9 +1,9 @@
 import React from 'react';
-import { 
-  DocumentTextIcon, 
-  ChartBarIcon, 
-  GlobeAltIcon, 
-  ShieldCheckIcon 
+import {
+  DocumentTextIcon,
+  ChartBarIcon,
+  GlobeAltIcon,
+  ShieldCheckIcon
 } from '@heroicons/react/24/outline';
 
 const features = [
@@ -19,12 +19,7 @@ const features = [
     icon: ChartBarIcon,
     color: 'from-purple-400 to-indigo-500'
   },
-  {
-    name: 'Global Payments',
-    description: 'Accept payments in multiple currencies. Scale your business globally without worrying about conversion.',
-    icon: GlobeAltIcon,
-    color: 'from-blue-400 to-cyan-500'
-  },
+
   {
     name: 'Tax Compliance',
     description: 'Built-in tax calculations and reporting. Stay compliant and ready for tax season with ease.',
@@ -39,7 +34,7 @@ const Features = () => {
       {/* Decorative background element */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-green-500/5 to-transparent pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mx-auto">
         <div className="text-center mb-16 px-4">
           <h2 className="text-green-400 text-xs sm:text-sm font-bold uppercase tracking-widest mb-3">Core Capabilities</h2>
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
@@ -52,8 +47,8 @@ const Features = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 px-4">
           {features.map((feature, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="group bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform`}>

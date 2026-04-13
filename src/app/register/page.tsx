@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { 
-  UserIcon, 
-  EnvelopeIcon, 
-  LockClosedIcon, 
-  BuildingOfficeIcon, 
+import {
+  UserIcon,
+  EnvelopeIcon,
+  LockClosedIcon,
+  BuildingOfficeIcon,
   MapPinIcon,
   CheckBadgeIcon,
   SparklesIcon
@@ -79,7 +79,7 @@ export default function RegisterPage() {
   return (
     <div className="bg-black min-h-screen flex flex-col pt-20">
       <Navbar />
-      
+
       <main className="flex-1 flex flex-col lg:flex-row relative overflow-hidden">
         {/* Decorative Background */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -111,20 +111,6 @@ export default function RegisterPage() {
               ))}
             </div>
 
-            <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-white/5">
-              <div className="flex items-center justify-center lg:justify-start gap-4">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-black bg-gray-800 flex items-center justify-center text-[8px] sm:text-[10px] font-bold text-white">
-                      U{i}
-                    </div>
-                  ))}
-                </div>
-                <p className="text-gray-400 text-xs sm:text-sm font-semibold">
-                  <span className="text-white">10,000+</span> businesses already signed up.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
