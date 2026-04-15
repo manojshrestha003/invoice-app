@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -29,6 +29,28 @@ export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
 
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    try {
+      const sessionRes = await fetch("/api/session");
+      if (!sessionRes.ok) return;
+      const sessionData = await sessionRes.json();
+      if (!sessionData?.user?.id) return;
+
+      const userRes = await fetch(`/api/users/${sessionData.user.id}`);
+      if (!userRes.ok) return;
+      const userData = await userRes.json();
+      setUser(userData);
+    } catch (error) {
+      console.error("Sidebar user fetch error:", error);
+    }
+  };
+
   const handleLogout = async () => {
     try {
       await fetch("/api/auth/logout", { method: "POST" });
@@ -41,6 +63,11 @@ export default function Sidebar() {
 
   const isRouteActive = (paths: string[]) => {
     return paths.some(p => pathname === p || pathname.startsWith(`${p}/`));
+  };
+
+  const getInitials = (name: string) => {
+    if (!name) return "U";
+    return name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase();
   };
 
   return (
@@ -120,7 +147,30 @@ export default function Sidebar() {
           </ul>
         </nav>
 
-        <div className="px-4 pt-6 mt-auto border-t border-white/[0.04]">
+        {/* User Profile Section */}
+        <div className="px-4 pt-6 border-t border-white/[0.04]">
+          {user && (
+            <Link 
+              href="/profile"
+              onClick={() => setSidebarOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/[0.04] transition-all group mb-4"
+            >
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 flex-shrink-0">
+                {user.avatar ? (
+                  <img src={user.avatar} alt="User" className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs">
+                    {getInitials(user.username || user.name)}
+                  </div>
+                )}
+              </div>
+              <div className="overflow-hidden">
+                <p className="text-sm font-bold text-white truncate">{user.username || user.name}</p>
+                <p className="text-[10px] text-gray-500 truncate">{user.email}</p>
+              </div>
+            </Link>
+          )}
+
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium text-gray-400 hover:text-red-400 hover:bg-red-500/10 group"

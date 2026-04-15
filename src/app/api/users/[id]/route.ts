@@ -32,7 +32,8 @@ export async function PUT(req: NextRequest, context: any) {
 
   try {
     const body = await req.json();
-    const { username, company, address, currentPassword, newPassword } = body;
+    const { username, company, address, avatar, currentPassword, newPassword } = body;
+    console.log("PUT /api/users/[id] - Received body:", { username, company, address, avatar: avatar ? "(URL Present)" : "(Missing)" });
 
     const user = await User.findById(id);
     if (!user) {
@@ -54,6 +55,7 @@ export async function PUT(req: NextRequest, context: any) {
     if (username) user.username = username;
     if (company !== undefined) user.company = company;
     if (address !== undefined) user.address = address;
+    if (avatar !== undefined) user.avatar = avatar;
 
     await user.save();
 

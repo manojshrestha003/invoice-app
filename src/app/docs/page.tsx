@@ -30,10 +30,7 @@ export default function DocsPage() {
           <h2 className="text-2xl font-bold mb-4">What is HisabKitab?</h2>
           <p className="text-gray-400 mb-6 leading-relaxed">HisabKitab is an open-concept billing and invoicing platform specifically designed for modern agility. We combine lightning-fast UX with AI analytics to save you hours every month.</p>
 
-          <div className="bg-purple-500/10 border border-purple-500/20 p-6 rounded-xl mt-8">
-            <h4 className="font-bold text-purple-400 mb-2">Pro Tip</h4>
-            <p className="text-gray-300 text-sm">Did you know? You can link HisabKitab directly to your bank account using our new Auto-Sync feature. Read more in the API section.</p>
-          </div>
+          
         </div>
       </div>
     </div>

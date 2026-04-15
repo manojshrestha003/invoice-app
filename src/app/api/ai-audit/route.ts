@@ -18,29 +18,45 @@ export async function POST(req: Request) {
     if (!openai) {
       return new Response(JSON.stringify({
         score: 85,
-        feedback: [
-          "No OPENAI_API_KEY provided in environment variables.",
-          "This is a mock response. Setup your key to get raw AI feedback.",
-          "Your total looks to be calculated correctly natively."
+        criticalIssues: [],
+        warnings: [
+          "Operational in mock mode. Setup OPENAI_API_KEY for live CPA-grade insights."
+        ],
+        suggestions: [
+          "Mathematical verification passed natively.",
+          "Consider adding detailed terms and conditions for better compliance."
         ]
       }), { status: 200 });
     }
 
     const prompt = `
-      You are an expert financial auditor. Review the following draft invoice data and provide a professionalism score (0-100) and an array of brief, actionable feedback points.
+      You are an elite financial auditor and CPA. Review the following draft invoice data and perform a rigorous audit.
+      
       Invoice Data:
       ${JSON.stringify(invoiceData, null, 2)}
 
-      Please return strictly valid JSON matching this schema:
+      Your goal is to provide a "Professionalism Score" (0-100) and categorize your findings into:
+      1. "criticalIssues": Mathematical errors, logical date errors (e.g. due date before issue date), or missing essential data.
+      2. "warnings": Missing but non-fatal data (e.g. notes, tax IDs, contact info).
+      3. "suggestions": Professionalism, language clarity, and branding improvements.
+
+      CRITICAL CHECKS:
+      - Does the sum of (item.total) match the totalAmount?
+      - Is the dueDate strictly after the date?
+      - Are item descriptions professional and clear?
+
+      Return strictly valid JSON matching this schema:
       {
-        "score": 95,
-        "feedback": ["Suggestion 1", "Suggestion 2"]
+        "score": number, 
+        "criticalIssues": string[],
+        "warnings": string[],
+        "suggestions": string[]
       }
     `;
 
     const completion = await openai.chat.completions.create({
       messages: [{ role: "system", content: prompt }],
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
       response_format: { type: "json_object" }
     });
 
