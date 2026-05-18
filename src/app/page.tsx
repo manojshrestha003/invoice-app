@@ -23,7 +23,7 @@ export default function LandingPage() {
 
           <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[1.1]">
             Billing made <br />
-            <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-teal-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-400 via-emerald-400 to-teal-500 bg-clip-text text-transparent">
               ridiculously simple.
             </span>
           </h1>
@@ -37,14 +37,14 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 px-4">
             <button
               onClick={() => router.push('/register')}
-              className="group bg-green-500 hover:bg-green-600 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-lg sm:text-xl font-bold shadow-2xl shadow-green-500/30 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
+              className="group bg-purple-600 hover:bg-purple-500  cursor-pointer text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-lg sm:text-xl font-bold shadow-2xl  transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
             >
               Get Started for Free
               <ArrowRightIcon className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={() => router.push('/login')}
-              className="bg-white/5 hover:bg-white/10 text-white border border-white/20 px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-lg sm:text-xl font-bold backdrop-blur-md transition-all transform hover:-translate-y-1 active:scale-95"
+              className="bg-white/5 hover:bg-white/10 text-white cursor-pointer border border-white/20 px-6 sm:px-10 py-4 sm:py-5 rounded-2xl text-lg sm:text-xl font-bold backdrop-blur-md transition-all transform hover:-translate-y-1 active:scale-95"
             >
               View Demo
             </button>
@@ -60,7 +60,7 @@ export default function LandingPage() {
       {/* Pricing Teaser / CTA Section */}
       <section id="pricing" className="py-20 md:py-24 bg-gradient-to-b from-black to-zinc-900 px-4">
         <div className="max-w-4xl mx-auto rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-10 md:p-16 bg-white/5 border border-white/10 backdrop-blur-sm text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
 
           <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-6">Ready to transform your business?</h3>
 

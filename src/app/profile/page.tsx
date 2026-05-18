@@ -274,7 +274,7 @@ export default function ProfilePage() {
       </header>
 
       <main className="p-4 sm:p-8 max-w-4xl mx-auto mt-4">
-        <section className="bg-[#111111] border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl relative p-8 md:p-12">
+        <section className="bg-[#111111] border border-white/[0.08] rounded-[1rem] overflow-hidden shadow-2xl relative p-8 md:p-12">
           {/* Decorative ambient background glows */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl -mr-40 -mt-40 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl -ml-40 -mb-40 pointer-events-none"></div>
@@ -301,7 +301,7 @@ export default function ProfilePage() {
                   </div>
                 )}
               </div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 bg-green-500 rounded-full border-4 border-[#161616] shadow-[0_0_10px_rgba(34,197,94,0.4)] z-10"></div>
+            
             </div>
 
             <div className="text-center md:text-left pt-2 flex-1">

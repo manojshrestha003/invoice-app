@@ -5,9 +5,28 @@ import { toast } from "sonner";
 
 export default function InvoiceListPage() {
   const [invoices, setInvoices] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [invoiceToDelete, setInvoiceToDelete] = useState<any | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Filter invoices based on search query
+  const filteredInvoices = invoices.filter((invoice) => {
+    const query = searchQuery.toLowerCase();
+    const invoiceId = invoice._id.slice(-6).toUpperCase();
+    const clientName = invoice.clientId?.name?.toLowerCase() || '';
+    const status = invoice.status?.toLowerCase() || '';
+    const amount = invoice.totalAmount?.toString() || '';
+    const date = new Date(invoice.date).toLocaleDateString('en-US').toLowerCase();
+
+    return (
+      invoiceId.includes(query.toUpperCase()) ||
+      clientName.includes(query) ||
+      status.includes(query) ||
+      amount.includes(query) ||
+      date.includes(query)
+    );
+  });
 
   useEffect(() => {
     fetch('/api/invoices', { credentials: 'include' })
@@ -64,18 +83,24 @@ export default function InvoiceListPage() {
 
       <main className="p-4 sm:p-8 max-w-[1400px] mx-auto mt-4">
         {/* Invoices List Section */}
-        <section className="bg-[#111111] border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl relative">
+        <section className="bg-[#111111] border border-white/[0.08] rounded-[1rem] overflow-hidden shadow-2xl relative">
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
 
           <div className="relative p-6 md:p-8 border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-xl font-bold text-white tracking-tight">Invoice Ledger</h2>
-              <p className="text-sm text-gray-400 mt-1 font-medium">{invoices.length} total invoice{invoices.length !== 1 ? 's' : ''} found.</p>
+              <p className="text-sm text-gray-400 mt-1 font-medium">{filteredInvoices.length} of {invoices.length} invoice{invoices.length !== 1 ? 's' : ''} found.</p>
             </div>
             <div className="flex items-center gap-2">
               <div className="relative">
                 <svg className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                <input type="text" placeholder="Search invoices..." className="w-full sm:w-64 pl-10 pr-4 py-2.5 bg-[#161616] border border-white/10 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all font-medium" />
+                <input 
+                  type="text" 
+                  placeholder="Search invoices..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full sm:w-64 pl-10 pr-4 py-2.5 bg-[#161616] border border-white/10 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all font-medium" 
+                />
               </div>
             </div>
           </div>
@@ -92,7 +117,7 @@ export default function InvoiceListPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/[0.04]">
-                {invoices.map((inv) => (
+                {filteredInvoices.map((inv) => (
                   <tr key={inv._id} className="hover:bg-white/[0.02] transition-colors group">
                     <td className="px-8 py-6">
                       <span className="font-mono text-xs font-bold text-gray-400 group-hover:text-purple-400 transition-colors bg-white/5 border border-white/5 px-2.5 py-1.5 rounded-lg shadow-inner">
@@ -161,15 +186,15 @@ export default function InvoiceListPage() {
                     </td>
                   </tr>
                 ))}
-                {invoices.length === 0 && (
+                {filteredInvoices.length === 0 && (
                   <tr>
                     <td colSpan={5} className="px-8 py-24 text-center">
                       <div className="inline-flex flex-col items-center justify-center text-gray-500">
                         <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-5 border border-white/5 shadow-inner">
                           <svg className="w-10 h-10 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                         </div>
-                        <span className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400">No invoices found</span>
-                        <p className="mt-3 text-sm text-gray-500 font-medium max-w-sm mx-auto">Click "New Invoice" to create your first billing document and start getting paid.</p>
+                        <span className="text-sm font-bold uppercase tracking-[0.2em] text-gray-400">{searchQuery ? 'No matching invoices' : 'No invoices found'}</span>
+                        <p className="mt-3 text-sm text-gray-500 font-medium max-w-sm mx-auto">{searchQuery ? 'Try adjusting your search criteria.' : 'Click "New Invoice" to create your first billing document and start getting paid.'}</p>
                       </div>
                     </td>
                   </tr>

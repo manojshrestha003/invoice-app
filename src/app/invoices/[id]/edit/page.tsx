@@ -139,7 +139,7 @@ export default function EditInvoicePage() {
       </header>
 
       <main className="p-4 sm:p-8 max-w-5xl mx-auto mt-4">
-        <section className="bg-[#111111] border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl relative p-8 md:p-10">
+        <section className="bg-[#111111] border border-white/[0.08] rounded-[1rem] overflow-hidden shadow-2xl relative p-8 md:p-10">
           <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
           
           <form onSubmit={handleSubmit} className="relative space-y-8">

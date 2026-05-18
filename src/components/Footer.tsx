@@ -9,10 +9,10 @@ const Footer = () => {
           {/* Brand Info */}
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center">
+              <div className="w-8 h-8 bg-purple-500 rounded flex items-center justify-center">
                 <span className="text-white font-bold uppercase tracking-tighter text-sm">H</span>
               </div>
-              <span className="text-white text-xl font-black tracking-tight">Hisab<span className="text-green-400">Kitab</span></span>
+              <span className="text-white text-xl font-black tracking-tight">Hisab<span className="text-purple-400">Kitab</span></span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               The ultimate billing and invoice management solution for modern entrepreneurs. Simplify your finances, grow your business.

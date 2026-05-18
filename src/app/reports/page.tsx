@@ -46,14 +46,7 @@ export default function ReportsPage() {
           <h1 className="text-2xl font-black mb-1">Financial Intelligence</h1>
           <p className="text-gray-400 text-sm">Real-time business performance analytics.</p>
         </div>
-        <div className="flex gap-3">
-          <button className="bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition-all border border-white/5">
-            Export PDF
-          </button>
-          <button className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-xs font-black transition-all shadow-lg shadow-purple-600/20">
-            Share Report
-          </button>
-        </div>
+       
       </header>
 
       <main className="p-4 sm:p-8 max-w-[1400px] mx-auto space-y-8 mt-4">
@@ -68,7 +61,7 @@ export default function ReportsPage() {
           <>
             {/* Top Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-[#111] border border-white/10 rounded-2xl p-6 relative overflow-hidden group">
+              <div className="bg-[#111] border border-white/10 rounded-lg p-6 relative overflow-hidden group">
                 <BanknotesIcon className="absolute -right-4 -bottom-4 w-24 h-24 text-white/[0.03] rotate-12 group-hover:scale-110 transition-transform" />
                 <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Net Profit</p>
                 <div className="flex items-baseline gap-2">
@@ -112,7 +105,7 @@ export default function ReportsPage() {
             {/* Charts Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Trends Chart */}
-              <div className="lg:col-span-2 bg-[#111] border border-white/10 rounded-3xl p-8">
+              <div className="lg:col-span-2 bg-[#111] border border-white/10 rounded-xl p-8">
                 <div className="flex items-center justify-between mb-8">
                   <div>
                     <h3 className="text-xl font-black">Financial Performance</h3>
@@ -178,7 +171,7 @@ export default function ReportsPage() {
               </div>
 
               {/* Categorical Pie Chart */}
-              <div className="bg-[#111] border border-white/10 rounded-3xl p-8">
+              <div className="bg-[#111] border border-white/10 rounded-xl p-8">
                 <h3 className="text-xl font-black mb-1">Expense Allocation</h3>
                 <p className="text-gray-500 text-xs mb-8">Breakdown of costs by category</p>
 

@@ -188,7 +188,7 @@ export default function ViewInvoicePage() {
       </header>
 
       <main className="p-4 sm:p-8 max-w-4xl mx-auto mt-4 print:p-0 print:m-0 print:max-w-none">
-        <section className="bg-[#111111] print:bg-white border border-white/[0.08] print:border-none rounded-[2rem] print:rounded-none overflow-hidden shadow-2xl print:shadow-none relative p-8 md:p-12 print:p-8">
+        <section className="bg-[#111111] print:bg-white border border-white/[0.08] print:border-none rounded-[1rem] print:rounded-none overflow-hidden shadow-2xl print:shadow-none relative p-8 md:p-12 print:p-8">
           <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 print:hidden rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
 
           <div className="relative">
@@ -197,8 +197,8 @@ export default function ViewInvoicePage() {
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center mb-6 shadow-lg print:border print:border-gray-300 print:bg-white">
                   <span className="text-2xl font-black text-white print:text-black tracking-tighter">HK</span>
                 </div>
-                <h2 className="text-2xl font-black tracking-tight print:text-black">HisabKitab INC.</h2>
-                <p className="text-gray-400 print:text-gray-600 text-sm mt-1">contact@hisabkitab.app</p>
+                <h2 className="text-2xl font-black tracking-tight print:text-black">HisabKitab </h2>
+                
               </div>
 
               <div className="md:text-right">

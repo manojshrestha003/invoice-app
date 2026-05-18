@@ -145,19 +145,19 @@ export default function ExpensesPage() {
       <main className="p-4 sm:p-8 max-w-[1400px] mx-auto space-y-8">
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-[#111] border border-white/10 rounded-2xl p-6">
+          <div className="bg-[#111] border border-white/10 rounded-lg p-6">
             <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Total Expenditures</p>
             <h2 className="text-3xl font-black font-mono">NPR {totalSpend.toLocaleString()}</h2>
             <div className="flex items-center gap-2 mt-4">
               <span className="text-[10px] bg-green-500/10 text-green-400 px-2 py-0.5 rounded font-bold">LIFETIME</span>
             </div>
           </div>
-          <div className="bg-[#111] border border-white/10 rounded-2xl p-6">
+          <div className="bg-[#111] border border-white/10 rounded-lg p-6">
             <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Top Spending Category</p>
             <h2 className="text-3xl font-black text-purple-400">{topCategory}</h2>
             <p className="text-sm text-gray-400 mt-4">Primary cost driver</p>
           </div>
-          <div className="bg-[#111] border border-white/10 rounded-2xl p-6">
+          <div className="bg-[#111] border border-white/10 rounded-lg p-6">
             <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Average Purchase</p>
             <h2 className="text-3xl font-black font-mono">NPR {Math.round(avgExpense).toLocaleString()}</h2>
             <p className="text-sm text-gray-400 mt-4">Per transaction</p>
@@ -165,7 +165,7 @@ export default function ExpensesPage() {
         </div>
 
         {/* Toolbar */}
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white/[0.03] border border-white/10 p-4 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white/[0.03] border border-white/10 p-4 rounded-xl">
           <div className="relative w-full md:w-96">
             <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
             <input
@@ -204,7 +204,7 @@ export default function ExpensesPage() {
         </div>
 
         {/* List */}
-        <div className="bg-[#111] border border-white/10 rounded-2xl overflow-hidden">
+        <div className="bg-[#111] border border-white/10 rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>

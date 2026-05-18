@@ -15,13 +15,15 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-2 group">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-lg flex items-center justify-center shadow-lg shadow-green-500/30 group-hover:shadow-green-500/50 transition-all">
-              <span className="text-white font-black text-lg sm:text-xl uppercase tracking-tighter">H</span>
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white font-black text-xl shadow-[0_0_15px_rgba(147,51,234,0.4)] group-hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] transition-all">
+              H
             </div>
-            <span className="text-white text-xl sm:text-2xl font-black tracking-tight flex items-baseline">
-              Hisab<span className="text-green-400">Kitab</span>
-              <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-green-400 rounded-full ml-1 animate-pulse"></span>
-            </span>
+            <h1 className="text-2xl font-black tracking-tight text-white group-hover:text-gray-200 transition-colors">
+              Hisab<span className="text-purple-400">Kitab</span>
+            </h1>
+            
+              
+           
           </Link>
 
           {/* Desktop Links */}
@@ -36,17 +38,12 @@ const Navbar = () => {
           {/* Auth Buttons & Mobile Toggle */}
           <div className="flex items-center gap-2 sm:gap-4">
             <div className="hidden sm:flex items-center gap-2">
-              <button
-                onClick={() => router.push('/login')}
-                className="px-4 py-2 text-gray-400 hover:text-white font-bold transition-colors text-sm uppercase tracking-wider"
-              >
-                Login
-              </button>
+              
               <button
                 onClick={() => router.push('/register')}
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-xl font-black shadow-lg shadow-green-500/20 transform hover:-translate-y-0.5 transition-all active:scale-95 text-sm uppercase tracking-wider"
+                className="px-8 py-3 bg-purple-600 hover:bg-purple-500 rounded-xl text-sm font-bold text-white transition-all shadow-[0_0_20px_rgba(147,51,234,0.2)] hover:shadow-[0_0_25px_rgba(147,51,234,0.4)] transform hover:-translate-y-0.5 disabled:opacity-50 disabled:transform-none flex items-center gap-2"
               >
-                Join Now
+                Get Started
               </button>
             </div>
 

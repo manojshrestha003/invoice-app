@@ -42,7 +42,7 @@ export default function AddClientPage() {
       </header>
 
       <main className="p-4 sm:p-8 max-w-4xl mx-auto mt-4">
-        <section className="bg-[#111111] border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl relative p-8 md:p-10">
+        <section className="bg-[#111111] border border-white/[0.08] rounded-[1rem] overflow-hidden shadow-2xl relative p-8 md:p-10">
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
           
           <form onSubmit={handleSubmit} className="relative space-y-6">
@@ -76,7 +76,7 @@ export default function AddClientPage() {
                 <input
                   name="phone"
                   type="text"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="+9770000000000"
                   required
                   value={form.phone}
                   onChange={handleChange}
@@ -101,7 +101,7 @@ export default function AddClientPage() {
               <input
                 name="address"
                 type="text"
-                placeholder="123 Business Rd, Suite 100"
+                placeholder="Client Address"
                 value={form.address}
                 onChange={handleChange}
                 className="w-full bg-[#161616] border border-white/10 text-white rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder-gray-600 font-medium"
@@ -118,7 +118,7 @@ export default function AddClientPage() {
               </button>
               <button
                 type="submit"
-                className="px-8 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl text-sm font-bold text-white transition-all shadow-[0_0_20px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] transform hover:-translate-y-0.5"
+                className="px-8 py-3 bg-purple-600 hover:bg-purple-500 rounded-xl text-sm font-bold text-white transition-all shadow-[0_0_20px_rgba(147,51,234,0.2)] hover:shadow-[0_0_25px_rgba(147,51,234,0.4)] transform hover:-translate-y-0.5 disabled:opacity-50 disabled:transform-none flex items-center gap-2"
               >
                 Save Client
               </button>

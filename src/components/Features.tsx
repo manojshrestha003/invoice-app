@@ -11,7 +11,7 @@ const features = [
     name: 'Instant Invoicing',
     description: 'Generate and send professional invoices in seconds. Impress your clients with sleek, modern designs.',
     icon: DocumentTextIcon,
-    color: 'from-green-400 to-emerald-500'
+    color: 'from-purple-400 to-emerald-500'
   },
   {
     name: 'Expense Tracking',
@@ -36,9 +36,9 @@ const Features = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mx-auto">
         <div className="text-center mb-16 px-4">
-          <h2 className="text-green-400 text-xs sm:text-sm font-bold uppercase tracking-widest mb-3">Core Capabilities</h2>
+
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
-            Everything you need to <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">master your finances.</span>
+            Everything you need to <span className="bg-gradient-to-r from-purple-400 to-emerald-500 bg-clip-text text-transparent">master your finances.</span>
           </h3>
           <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto font-medium">
             HisabKitab provides a comprehensive suite of tools designed to simplify your billing process and give you total control over your business growth.
@@ -49,12 +49,12 @@ const Features = () => {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="group bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform hover:-translate-y-2"
+              className="group bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className={`w-14 h-14 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform`}>
                 <feature.icon className="w-8 h-8 text-white" />
               </div>
-              <h4 className="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">{feature.name}</h4>
+              <h4 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">{feature.name}</h4>
               <p className="text-gray-400 leading-relaxed">
                 {feature.description}
               </p>

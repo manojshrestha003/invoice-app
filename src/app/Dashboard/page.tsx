@@ -127,48 +127,48 @@ export default function DashboardPage() {
         {/* Quick Stats */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Total Revenue Card */}
-          <div className="group relative bg-[#111111] border border-white/[0.08] rounded-[2rem] p-8 overflow-hidden transition-all duration-300 hover:bg-[#151515] hover:border-white/[0.12] hover:-translate-y-1 shadow-2xl">
+          <div className="group relative bg-[#111111] border border-white/[0.08] rounded-[1rem] p-8 overflow-hidden transition-all duration-300 hover:bg-[#151515] hover:border-white/[0.12] hover:-translate-y-1 shadow-2xl">
             <div className="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-110"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">Total Revenue</h2>
+                <h2 className="text-2xl font-bold text-gray-400 uppercase tracking-[0.2em]">Total Revenue</h2>
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 shadow-[0_0_15px_rgba(147,51,234,0.15)] group-hover:shadow-[0_0_20px_rgba(147,51,234,0.25)] transition-shadow duration-300">
                   <svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
               </div>
-              <p className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent">
+              <p className="text-4xl sm:text-2xl font-black tracking-tighter bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent">
                 {formatCurrency(dashboardData.totalInvoices)}
               </p>
             </div>
           </div>
 
           {/* Pending Payments Card */}
-          <div className="group relative bg-[#111111] border border-white/[0.08] rounded-[2rem] p-8 overflow-hidden transition-all duration-300 hover:bg-[#151515] hover:border-white/[0.12] hover:-translate-y-1 shadow-2xl">
+          <div className="group relative bg-[#111111] border border-white/[0.08] rounded-[1rem] p-8 overflow-hidden transition-all duration-300 hover:bg-[#151515] hover:border-white/[0.12] hover:-translate-y-1 shadow-2xl">
             <div className="absolute top-0 right-0 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-110"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">Outstanding</h2>
+                <h2 className="text-xl font-bold text-gray-400 uppercase tracking-[0.2em]">Outstanding</h2>
                 <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.15)] group-hover:shadow-[0_0_20px_rgba(249,115,22,0.25)] transition-shadow duration-300">
                   <svg className="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
               </div>
-              <p className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">
+              <p className="text-4xl sm:text-2xl font-black tracking-tighter bg-gradient-to-r from-orange-400 to-amber-300 bg-clip-text text-transparent">
                 {formatCurrency(dashboardData.pendingPayments)}
               </p>
             </div>
           </div>
 
           {/* Clients Card */}
-          <div className="group relative bg-[#111111] border border-white/[0.08] rounded-[2rem] p-8 overflow-hidden transition-all duration-300 hover:bg-[#151515] hover:border-white/[0.12] hover:-translate-y-1 shadow-2xl">
+          <div className="group relative bg-[#111111] border border-white/[0.08] rounded-[1rem] p-8 overflow-hidden transition-all duration-300 hover:bg-[#151515] hover:border-white/[0.12] hover:-translate-y-1 shadow-2xl">
             <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-110"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">Active Clients</h2>
+                <h2 className="text-xl font-bold text-gray-400 uppercase tracking-[0.2em]">Active Clients</h2>
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.15)] group-hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-shadow duration-300">
                   <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                 </div>
               </div>
-              <p className="text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+              <p className="text-4xl sm:text-2xl font-black tracking-tighter bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
                 {dashboardData.totalClients}
               </p>
             </div>
@@ -178,7 +178,7 @@ export default function DashboardPage() {
         {/* Charts Section */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Revenue Chart */}
-          <div className="lg:col-span-2 bg-[#111111] border border-white/[0.08] rounded-[2rem] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+          <div className="lg:col-span-2 bg-[#111111] border border-white/[0.08] rounded-[1rem] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl -ml-20 -mt-20 pointer-events-none"></div>
             <div className="relative">
               <h2 className="text-lg font-black text-white tracking-tight mb-6">Revenue Over Time</h2>
@@ -203,7 +203,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Invoice Status Donut Chart */}
-          <div className="bg-[#111111] border border-white/[0.08] rounded-[2rem] p-6 sm:p-8 shadow-2xl relative overflow-hidden flex flex-col">
+          <div className="bg-[#111111] border border-white/[0.08] rounded-[1rem] p-6 sm:p-8 shadow-2xl relative overflow-hidden flex flex-col">
             <div className="absolute bottom-0 right-0 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl -mr-20 -mb-20 pointer-events-none"></div>
             <div className="relative flex-1 flex flex-col">
               <h2 className="text-lg font-black text-white tracking-tight mb-2">Invoice Status Overview</h2>
@@ -247,7 +247,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Recent Invoices List */}
-        <section className="bg-[#111111] border border-white/[0.08] rounded-[2rem] overflow-hidden shadow-2xl relative mt-8">
+        <section className="bg-[#111111] border border-white/[0.08] rounded-[1rem] overflow-hidden shadow-2xl relative mt-8">
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
           
           <div className="relative p-6 md:p-8 border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
