@@ -34,8 +34,8 @@ const benefits = [
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('demo@user.com');
+  const [password, setPassword] = useState('DemoUser');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -110,6 +110,9 @@ export default function LoginPage() {
                 <KeyIcon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight">Sign In</h2>
+              <div className="inline-block bg-green-500/20 border border-green-500/50 rounded-full px-4 py-2 mb-4">
+                <p className="text-green-400 font-bold text-xs uppercase tracking-widest">Demo Account Enabled</p>
+              </div>
               <p className="text-gray-400 font-medium text-xs sm:text-sm">Welcome back! Please enter your details.</p>
             </div>
 
