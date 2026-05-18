@@ -116,7 +116,8 @@ export default function RegisterPage() {
 
         {/* Right Side: Registration Form */}
         <div className="lg:w-1/2 flex items-center justify-center px-4 py-8 sm:py-12 lg:py-24 relative z-10">
-          <div className="w-full max-w-lg bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 md:p-12 transform hover:scale-[1.01] transition-transform">
+          <div className="w-full max-w-lg bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl 
+          rounded-[1rem] sm:rounded-[1rem] p-6 sm:p-10 md:p-12 transform hover:scale-[1.01] transition-transform">
             <div className="text-center mb-8 sm:mb-10">
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight transition-all">Create Account</h2>
               <p className="text-gray-400 font-medium text-xs sm:text-sm">Please enter your details below.</p>

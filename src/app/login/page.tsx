@@ -104,16 +104,14 @@ export default function LoginPage() {
 
         {/* Right Side: Login Form */}
         <div className="lg:w-1/2 flex items-center justify-center px-4 py-8 sm:py-12 lg:py-24 relative z-10 order-1 lg:order-2">
-          <div className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 md:p-12 transform hover:scale-[1.01] transition-transform">
+          <div className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl  sm:rounded-[1rem] p-6 sm:p-10 md:p-12 transform hover:scale-[1.01] transition-transform">
             <div className="text-center mb-8 sm:mb-10">
               <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-2xl mb-6 shadow-lg shadow-green-500/20">
                 <KeyIcon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight">Sign In</h2>
-              <div className="inline-block bg-green-500/20 border border-green-500/50 rounded-full px-4 py-2 mb-4">
-                <p className="text-green-400 font-bold text-xs uppercase tracking-widest">Demo Account Enabled</p>
-              </div>
-              <p className="text-gray-400 font-medium text-xs sm:text-sm">Welcome back! Please enter your details.</p>
+              
+              <p className="text-gray-400 font-medium text-xs sm:text-sm">Welcome back! </p>
             </div>
 
             {error && (
@@ -149,9 +147,7 @@ export default function LoginPage() {
                   <label htmlFor="password" className="block text-xs font-bold text-gray-500 uppercase tracking-widest">
                     Password
                   </label>
-                  <Link href="#" className="text-[10px] font-bold text-green-500 hover:text-green-400 transition-colors uppercase tracking-wider">
-                    Forgot PK?
-                  </Link>
+
                 </div>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
