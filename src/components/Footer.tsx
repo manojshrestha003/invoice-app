@@ -23,25 +23,25 @@ const Footer = () => {
           <div>
             <h5 className="text-white font-bold mb-6">Product</h5>
             <ul className="space-y-4">
-              <li><Link href="/features" className="text-gray-400 hover:text-green-400 transition-colors text-sm">Features</Link></li>
+              <li><Link href="/features" className="text-gray-400 hover:text-purple-400 transition-colors text-sm">Features</Link></li>
               {
                 /*
                     
-                    <li><Link href="/pricing" className="text-gray-400 hover:text-green-400 transition-colors text-sm">Pricing</Link></li>
+                    <li><Link href="/pricing" className="text-gray-400 hover:text-purple-400 transition-colors text-sm">Pricing</Link></li>
                        } 
                     */
               }
-              <li><Link href="/about" className="text-gray-400 hover:text-green-400 transition-colors text-sm">About Us</Link></li>
+              <li><Link href="/about" className="text-gray-400 hover:text-purple-400 transition-colors text-sm">About Us</Link></li>
             </ul>
           </div>
 
           <div>
             <h5 className="text-white font-bold mb-6">Support</h5>
             <ul className="space-y-4">
-              <li><Link href="/docs" className="text-gray-400 hover:text-green-400 transition-colors text-sm">Documentation</Link></li>
+              <li><Link href="/docs" className="text-gray-400 hover:text-purple-400 transition-colors text-sm">Documentation</Link></li>
               {/*
-              <li><Link href="/api-reference" className="text-gray-400 hover:text-green-400 transition-colors text-sm">API Reference</Link></li>
-              <li><Link href="/security" className="text-gray-400 hover:text-green-400 transition-colors text-sm">Security</Link></li> */
+              <li><Link href="/api-reference" className="text-gray-400 hover:text-purple-400 transition-colors text-sm">API Reference</Link></li>
+              <li><Link href="/security" className="text-gray-400 hover:text-purple-400 transition-colors text-sm">Security</Link></li> */
               }
             </ul>
           </div>

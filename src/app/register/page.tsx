@@ -91,7 +91,7 @@ export default function RegisterPage() {
         <div className="lg:w-1/2 flex flex-col justify-center px-4 sm:px-12 lg:px-24 py-12 relative z-10 lg:border-r border-white/5">
           <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
-              Start your business journey with <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">HisabKitab.</span>
+              Start your business journey with <span className="bg-gradient-to-r from-purple-500 to-emerald-500 bg-clip-text text-transparent">HisabKitab.</span>
             </h1>
             <p className="text-gray-400 text-base sm:text-lg mb-10 font-medium leading-relaxed">
               Join thousands of entrepreneurs who trust HisabKitab for their daily billing and invoice management. Simple, fast, and secure.
@@ -208,7 +208,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-green-500 hover:bg-green-600 disabled:bg-green-500/50 disabled:cursor-not-allowed text-white font-black py-4 px-6 rounded-2xl shadow-xl shadow-green-500/20 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 text-lg"
+                className="w-full bg-purple-600 hover:bg-purple-500  cursor-pointer disabled:bg-purple-500/50 disabled:cursor-not-allowed text-white font-black py-4 px-6 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 text-lg"
               >
                 {isLoading ? (
                   <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -221,7 +221,7 @@ export default function RegisterPage() {
             <div className="mt-8 text-center pt-8 border-t border-white/5">
               <p className="text-gray-400 font-medium text-sm">
                 Already have an account?{' '}
-                <Link href="/login" className="text-green-400 hover:text-green-300 font-bold underline-offset-4 hover:underline transition-all">
+                <Link href="/login" className="text-purple-400 hover:text-purple-300 font-bold underline-offset-4 hover:underline transition-all">
                   Sign in here
                 </Link>
               </p>

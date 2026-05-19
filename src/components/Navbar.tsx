@@ -28,11 +28,11 @@ const Navbar = () => {
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/features" className="text-gray-400 hover:text-white font-medium transition-colors text-sm uppercase tracking-widest">Features</Link>
+            <Link href="/features" className="text-gray-400 hover:text-white font-medium transition-colors text-lg tracking-widest">Features</Link>
             {/*
             <Link href="#pricing" className="text-gray-400 hover:text-white font-medium transition-colors text-sm uppercase tracking-widest">Pricing</Link>
             */}
-            <Link href="/about" className="text-gray-400 hover:text-white font-medium transition-colors text-sm uppercase tracking-widest">About</Link>
+            <Link href="/about" className="text-gray-400 hover:text-white font-medium transition-colors text-lg  tracking-widest">About</Link>
           </div>
 
           {/* Auth Buttons & Mobile Toggle */}

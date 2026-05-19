@@ -79,7 +79,7 @@ export default function LoginPage() {
         <div className="lg:w-1/2 flex flex-col justify-center px-4 sm:px-12 lg:px-24 py-12 relative z-10 lg:border-r border-white/5 order-2 lg:order-1">
           <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
-              Welcome back to <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">HisabKitab.</span>
+              Welcome back to <span className="bg-gradient-to-r from-purple-500 to-emerald-500 bg-clip-text text-transparent">HisabKitab.</span>
             </h1>
             <p className="text-gray-400 text-base sm:text-lg mb-10 font-medium leading-relaxed">
               Log in to your account and manage your business finances with the most advanced billing tool.
@@ -88,11 +88,11 @@ export default function LoginPage() {
             <div className="space-y-6 sm:space-y-8 text-left">
               {benefits.map((benefit, idx) => (
                 <div key={idx} className="flex gap-4 group">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-green-500/10 group-hover:border-green-500/50 transition-all">
-                    <benefit.icon className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/5 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-purple-500/10 group-hover:border-purple-500/50 transition-all">
+                    <benefit.icon className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold text-base sm:text-lg mb-1 group-hover:text-green-400 transition-colors">{benefit.title}</h4>
+                    <h4 className="text-white font-bold text-base sm:text-lg mb-1 group-hover:text-purple-400 transition-colors">{benefit.title}</h4>
                     <p className="text-gray-500 font-medium text-sm sm:text-base">{benefit.description}</p>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-green-500 hover:bg-green-600 disabled:bg-green-500/50 disabled:cursor-not-allowed text-white font-black py-4 px-6 rounded-2xl shadow-xl shadow-green-500/20 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 text-lg"
+                className="w-full bg-purple-600 hover:bg-purple-500  cursor-pointer disabled:bg-purple-500/50 disabled:cursor-not-allowed text-white font-black py-4 px-6 rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 text-lg"
               >
                 {isLoading ? (
                   <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -182,7 +182,7 @@ export default function LoginPage() {
             <div className="mt-8 text-center pt-8 border-t border-white/5">
               <p className="text-gray-400 font-medium text-sm">
                 New to HisabKitab?{' '}
-                <Link href="/register" className="text-green-400 hover:text-green-300 font-bold underline-offset-4 hover:underline transition-all">
+                <Link href="/register" className="text-purple-400 hover:text-purple-300 font-bold underline-offset-4 hover:underline transition-all">
                   Create account
                 </Link>
               </p>

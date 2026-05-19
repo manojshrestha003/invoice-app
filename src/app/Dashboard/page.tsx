@@ -107,10 +107,7 @@ export default function DashboardPage() {
         <div className="flex items-center gap-4">
           <h1 className="text-2xl font-black text-white tracking-tight">Analytics</h1>
           <div className="hidden md:flex h-6 w-px bg-white/10"></div>
-          <span className="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-xs font-medium text-gray-400 border border-white/5">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
-            System Operational
-          </span>
+         
         </div>
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-end">
