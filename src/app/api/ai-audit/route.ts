@@ -7,6 +7,7 @@ if (process.env.OPENAI_API_KEY) {
   openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 }
 
+// ai audit 
 export async function POST(req: Request) {
   try {
     const user = getUserFromRequest(req);
